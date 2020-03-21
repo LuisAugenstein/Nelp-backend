@@ -1,7 +1,7 @@
 let users = [
   {
     id: 1,
-    username: "User1",
+    username: "Luis",
     password: "1234",
     image: "",
     description: "Test",
@@ -12,7 +12,7 @@ let users = [
     username: "User2",
     password: "123",
     image: "",
-    description: "Test Silas",
+    description: "Test ",
     location: { lat: 48.873611896, lng: 8.5870133 }
   },
   {
