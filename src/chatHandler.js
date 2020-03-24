@@ -23,7 +23,7 @@ const chatHandler = socket => {
     const mp = getMessagePartner(msg);
     mp.userActive1 = true;
     mp.userActive2 = true;
-    socket.broadcast.emit("newMessagesAvailable", { id: msg.receiver });
+    socket.broadcast.emit("newMessagesAvailable", { msg });
     callback(id);
   });
 };
