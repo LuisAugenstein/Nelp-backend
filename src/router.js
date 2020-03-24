@@ -4,6 +4,9 @@ const router = express.Router();
 //delete all images on server restart
 const fs = require("fs");
 const path = require("path");
+if (!fs.existsSync(__dirname + "/images/")) {
+  fs.mkdirSync(__dirname + "/images/");
+}
 fs.readdir(__dirname + "/images/", (err, files) => {
   if (err) console.log(err);
   if (!files) return;
