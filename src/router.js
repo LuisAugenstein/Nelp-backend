@@ -5,6 +5,7 @@ const router = express.Router();
 const fs = require("fs");
 fs.readdir("./src/images", (err, files) => {
   if (err) console.log(err);
+  if (!files) return;
   for (const file of files) {
     fs.unlink("./src/images/" + file, err => {
       if (err) console.log(err);
