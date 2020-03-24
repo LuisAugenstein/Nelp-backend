@@ -6,7 +6,7 @@ const fs = require("fs");
 
 const PORT = process.env.PORT || 5000;
 
-const router = require("./router");
+const { router } = require("./router");
 
 const app = express();
 const server = http.createServer(app);

@@ -3,7 +3,7 @@ let users = [
     id: 1,
     username: "Luis",
     password: "1234",
-    image: "",
+    imageURL: "",
     description: "Test",
     location: { lat: 48.873611896, lng: 8.5862433 }
   },
@@ -11,7 +11,7 @@ let users = [
     id: 2,
     username: "User2",
     password: "123",
-    image: "",
+    imageURL: "",
     description: "Test ",
     location: { lat: 48.873611896, lng: 8.5870133 }
   },
@@ -19,7 +19,7 @@ let users = [
     id: 3,
     username: "Silas",
     password: "123",
-    image: "",
+    imageURL: "",
     description: "Ich heiße Silas und würde für 10€ die Stunde Rasen mähen.",
     location: { lat: 48.872611899999995, lng: 8.5862433 }
   }
@@ -32,7 +32,7 @@ const addUser = ({ username, password }) => {
   const user = {
     username,
     password,
-    image: "",
+    imageURL: "",
     description: "",
     location: { lat: 0, lng: 0 }
   };
@@ -40,21 +40,25 @@ const addUser = ({ username, password }) => {
   users.push(user);
 };
 
-const updateUser = ({
-  id,
-  username,
-  password,
-  image,
-  description,
-  location
-}) => {
+const updateUser = ({ id, username, password, description, location }) => {
   const user = users.find(user => user.id === id);
   if (!user) return;
   user.username = username;
   user.password = password;
-  user.image = image;
   user.description = description;
   user.location = location;
+};
+
+const updateImage = ({ id, imageURL }) => {
+  const user = users.find(user => user.id === id);
+  if (!user) return;
+  if (user.imageURL && user.imageURL != imageURL) {
+    require("fs").unlink(user.imageURL, err => {
+      if (err) console.log(err);
+    });
+  }
+
+  user.imageURL = imageURL;
 };
 
 const getUser = ({ id, username }) => {
@@ -70,4 +74,4 @@ const getOtherUsers = ({ id }) => {
   return users.filter(user => user.id !== id && user.location.lat);
 };
 
-module.exports = { addUser, updateUser, getUser, getOtherUsers };
+module.exports = { addUser, updateUser, updateImage, getUser, getOtherUsers };
