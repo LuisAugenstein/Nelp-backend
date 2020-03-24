@@ -3,11 +3,12 @@ const router = express.Router();
 
 //delete all images on server restart
 const fs = require("fs");
-fs.readdir("./src/images", (err, files) => {
+const path = require("path");
+fs.readdir(__dirname + "/images/", (err, files) => {
   if (err) console.log(err);
   if (!files) return;
   for (const file of files) {
-    fs.unlink("./src/images/" + file, err => {
+    fs.unlink(path.join(__dirname + "/images/" + file), err => {
       if (err) console.log(err);
     });
   }
